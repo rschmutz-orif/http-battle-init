@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 
-import Layout from './components/modules/Layout'
+// Login Components
+import LoginLayout from './components/layouts/login';
+import LoginForm from './components/modules/login/form';
 
+// Lobby Components
+import LobbyLayout from './components/layouts/lobby';
+import GamesCreate from './components/modules/games/create';
+import GamesList from './components/modules/Games/list';
 
-import Login from './components/modules/Login'
-import Lobby from './components/modules/Lobby'
-import Game from './components/modules/Game'
+// In-Game Components
+import GameLayout from './components/layouts/game'
+import GamesLaunch from './components/modules/games/launch';
+
+// Auth utils
+import { AuthProvider, useAuth } from './hooks/useAuth';
 
 import './index.pcss';
 
@@ -19,17 +28,33 @@ const NoMatch = () => {
     return <p>404 - Aucune page trouvée</p>
 }
 
-root.render(<BrowserRouter>
-    <Routes>
-        <Route path="/" element={<Layout />}>
-            <Route index element={<Login />} />
-            <Route path="lobby" element={<Lobby />} />
-            <Route path="games/:gameId" element={<Game />} />
+const Logout = () => {
+    const { logout } = useAuth();
 
-            {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
+    useEffect(() => {
+        logout();
+    })
+    return <></>;
+}
+
+root.render(<BrowserRouter>
+    <AuthProvider>
+        <Routes>
+            <Route path="/login" element={<LoginLayout />}>
+                <Route index element={<LoginForm />} />
+            </Route>
+
+            <Route path="/lobby" element={<LobbyLayout />}>
+                <Route index element={<GamesList />} />
+                <Route path="new-game" element={<GamesCreate />} />
+            </Route>
+
+            <Route path="/games" element={<GameLayout />}>
+                <Route path=":gameId" element={<GamesLaunch />} />
+            </Route>
+
+            <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<NoMatch />} />
-        </Route>
-    </Routes>
+        </Routes>
+    </AuthProvider>
 </BrowserRouter>);
