@@ -10,7 +10,7 @@ import LoginForm from './components/modules/login/form';
 // Lobby Components
 import LobbyLayout from './components/layouts/lobby';
 import GamesCreate from './components/modules/games/create';
-import GamesList from './components/modules/Games/list';
+import GamesList from './components/modules/games/list';
 
 // In-Game Components
 import GameLayout from './components/layouts/game'

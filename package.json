@@ -4,11 +4,10 @@
   "description": "Introduction au protocole HTTP au travers d'un jeu dérivé de la bataille navale.",
   "main": "client/src/index.js",
   "scripts": {
-    "start": "node ./server/prod.js",
-    "build": "webpack --env production --node-env production ",
-    "watch:client": "webpack --watch --mode development .",
-    "watch:server": "nodemon \"./server/dev.js\"",
-    "serve": "npm-run-all --parallel watch:client watch:server"
+    "build:client": "webpack --env production --node-env production ",    
+    "start:api": "node ./server/prod.js",
+    "serve:client": "webpack serve",
+    "serve:api": "nodemon ./api/index.js"
   },
   "repository": {
     "type": "git",

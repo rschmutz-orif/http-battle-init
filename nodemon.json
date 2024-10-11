@@ -1,6 +1,0 @@
-{
-    "watch": [
-        "client/dist/",
-        "server/"
-    ]
-}
