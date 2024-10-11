@@ -16,6 +16,10 @@ import GamesList from './components/modules/games/list';
 import GameLayout from './components/layouts/game'
 import GamesLaunch from './components/modules/games/launch';
 
+// Protected Route
+import { ProtectedRoute } from './components/layouts/protected-route';
+
+
 // Auth utils
 import { AuthProvider, useAuth } from './hooks/useAuth';
 
@@ -25,7 +29,11 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 const NoMatch = () => {
-    return <p>404 - Aucune page trouvée</p>
+    return (<ProtectedRoute>
+        <div className="w-full h-full flex items-center justify-center">
+            <p>404 - Aucune page trouvée</p>
+        </div>
+    </ProtectedRoute>);
 }
 
 const Logout = () => {

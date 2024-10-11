@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
     entry: path.resolve(__dirname, 'client', 'src/index.js'),
     output: {
         path: path.resolve(__dirname, 'client', 'dist'),
@@ -11,7 +12,7 @@ module.exports = {
     },
     target: 'web',
     devServer: {
-        port: '5000',
+        port: '4000',
         static: {
             directory: path.join(__dirname, 'client/public')
         },

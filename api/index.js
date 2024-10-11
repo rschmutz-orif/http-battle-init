@@ -13,7 +13,7 @@ const normalizePort = (val) => {
     return false;
 };
 
-const port = normalizePort(parseInt(process.env.PORT) || process.argv[3] || 8080);
+const port = normalizePort(parseInt(process.env.PORT) || process.argv[3] || 3000);
 
 app.set("port", port);
 
